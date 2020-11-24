@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{header :: header}"></div>
+</head>
+<body class="container p-3 mb-2 bg-info text-white">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+<main>
+    <h3>Search and modify masters data</h3>
+    <p th:text="${message} ?:'Select data'"/>
+    <br>
+    <div>
+        <p>Masters available:</p>
+        <th:block th:each="master : ${masters}">
+            <li th:utext="${master}"/>
+        </th:block>
+    </div>
+    <br>
+    <p>add new master:</p>
+    <h6>available specialities are: MECHANIC, RESHAPER, ELECTRICIAN, PAINTER</h6>
+    <div>
+        <form method="post" th:action="@{/masters/add}">
+            <input name="name" placeholder="enter full name:" type="text">
+            <input name="salary" placeholder="enter daily payment:" type="text">
+            <input name="speciality" placeholder="enter speciality:" type="text">
+            <input placeholder="submit" type="submit" value="submit">
+        </form>
+    </div>
+    <br>
+    <p>book master for the Date:</p>
+    <div>
+        <form method="post" th:action="@{/masters/set-date}">
+            <input name="id" placeholder="enter Master's id:" type="text">
+            <input name="date" placeholder="enter date to book:" type="text">
+            <input placeholder="submit" type="submit" value="submit">
+        </form>
+    </div>
+    <br>
+    <p>delete master:</p>
+    <div>
+        <form method="post" th:action="@{/masters/delete}">
+            <input name="id" placeholder="enter Master's id:" type="text">
+            <input placeholder="submit" type="submit" value="submit">
+        </form>
+    </div>
+    <br>
+    <p>unbook master:</p>
+    <div>
+        <form method="post" th:action="@{/masters/un-book}">
+            <input name="id" placeholder="enter Master's id:" type="text">
+            <input name="date" placeholder="enter date to unbook:" type="text">
+            <input placeholder="submit" type="submit" value="submit">
+        </form>
+    </div>
+    <br>
+    <div>
+        <p>find master:</p>
+        <form method="get" th:action="@{/masters/find}">
+            <input name="name" placeholder="enter Master's name:" type="text">
+            <input name="speciality" placeholder="enter speciality :" type="text">
+            <input placeholder="submit" type="submit" value="submit">
+        </form>
+    </div>
+    <br>
+    <div>
+        <p>find free master:</p>
+        <form method="get" th:action="@{/masters/free}">
+            <input name="date" placeholder="enter date:" type="text">
+            <input name="speciality" placeholder="enter speciality:" type="text">
+            <input placeholder="submit" type="submit" value="submit">
+        </form>
+    </div>
+    <br>
+    <div>
+        <p>find free masters for the Date:</p>
+        <form method="get" th:action="@{/masters/free-all}">
+            <input name="date" placeholder="enter date:" type="text">
+            <input placeholder="submit" type="submit" value="submit">
+        </form>
+    </div>
+    <br>
+    <div>
+        <p>find all masters of the Speciality:</p>
+        <form method="get" th:action="@{/masters/speciality}">
+            <input name="speciality" placeholder="enter Speciality:" type="text">
+            <input placeholder="submit" type="submit" value="submit">
+        </form>
+    </div>
+
+</main>
+<div th:insert="~{footer :: footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{fragments/header :: header}"></div>
+</head>
+<body class="container p-3 mb-2 bg-info text-white">
+
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                   
+                        <form method="post" th:action="@{/registration}">
+                            <div class="inner" mt-2 align="center">
+                                <input name="name" placeholder="enter full user name:" type="text">
+                            </div>
+
+                            <br>
+                            <div class="inner" mt-2 align="center">
+                            <input name="password" placeholder="password" type="password">
+                            </div>
+                            <br>
+                            <div class="inner" mt-2 align="center">
+                            <input name="cpassword" placeholder="confirm password" type="password">
+                            </div>
+                            <br>
+                            <div class="inner" mt-2 align="center">
+                            <input name="role" placeholder="user role" type="text">
+                            </div>
+                            <br>
+                            <div class="inner" mt-2 align="center">
+                                <button class="btn btn-info" type="submit" >   submit     </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>

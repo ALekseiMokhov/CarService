@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{fragments/header :: header}"></div>
+</head>
+<body class="container p-3 mb-2 bg-info text-white">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarSupportedContent" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<h3>Search and modify garage data</h3>
+<br>
+<p th:text="${message} ?:'Select data'"/>
+<br>
+<p>Places in garage:</p>
+<div>
+    <th:block th:each="place : ${places}">
+        <li th:utext="${place}"/>
+    </th:block>
+</div>
+<br>
+<p>find place by Id:</p>
+<div>
+    <form action="#" method="get" th:action="@{/places/getById}">
+        <input name="id" placeholder="find place" type="text">
+        <input placeholder="submit" type="submit" value="submit">
+    </form>
+    <p th:text="${place_found_by_id}"></p>
+</div>
+<br>
+<p>find free place:</p>
+<div>
+    <form method="get" th:action="@{/places/getFreePlace}">
+        <input name="id" placeholder="enter date(YYYY-MM-DD):" type="text">
+        <input placeholder="submit" type="submit" value="submit">
+    </form>
+    <p th:text="${free_place}"></p>
+</div>
+<br>
+<p>add extra places to garage:</p>
+<div>
+    <form method="post" th:action="@{/places/addPlaces}">
+        <input name="numberOfPlaces" placeholder="add places" type="text">
+        <input placeholder="submit" type="submit" value="submit">
+    </form>
+</div>
+<br>
+<p>book chosen place for the specific date:</p>
+<div>
+    <form method="post" th:action="@{/places/setDate}">
+        <input placeholder="enter the id to book:" th:name="id" type="text">
+        <input placeholder="date(YYYY-MM-DD):" th:name="date" type="text">
+        <input placeholder="submit" type="submit" value="submit">
+    </form>
+</div>
+<br>
+<p>unbook Place:</p>
+<div>
+    <form method="post" th:action="@{/places/un-book}">
+        <input placeholder="enter the id to book:" th:name="oldId" type="text">
+        <input placeholder="date(YYYY-MM-DD):" th:name="newId" type="text">
+        <input placeholder="submit" type="submit" value="submit">
+    </form>
+</div>
+<br>
+<p>delete place by Id:</p>
+<div>
+    <form method="post" th:action="@{/places/delete}">
+        <input name="id" placeholder="id to delete" type="text">
+        <input placeholder="submit" type="submit" value="submit">
+    </form>
+</div>
+<div th:insert="~{footer :: footer}"></div>
+
+</body>
+</body>
+</html>
